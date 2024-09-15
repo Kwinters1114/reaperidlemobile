@@ -21,7 +21,6 @@ extends Control
 @onready var panel: PanelContainer = $Panel
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
 	#If there isn't already an entry in the global dictionary, make one.
@@ -40,7 +39,7 @@ func _ready() -> void:
 	#Initialize labels and icons.
 	name_label.text = upgrade_name
 	description_label.text = upgrade_description
-	buy.text = "Buy\n(" + str(upgrade_price) + ")"
+	buy.text = "Buy\n(" + Global.format_number(upgrade_price) + ")"
 	icon.texture = upgrade_icon
 	
 	#Creates different effect descriptions based on how it affects the target COD.
@@ -54,18 +53,16 @@ func _ready() -> void:
 			effect_text = "+" + str(effect_amount) + " souls per " + str(affected_cod) 
 	effect_label.text = effect_text
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	#Disables button if upgrade can't be afforded.
-	if Global.souls < upgrade_price:
+	if Global.souls_info["souls"] < upgrade_price:
 		buy.disabled = true
 	else:
 		buy.disabled = false
 	
 	#Unlock the upgrade once player has hit at least 75% of the price.
-	if Global.highest_souls >= upgrade_price * 0.75:
+	if Global.souls_info["highest_souls"] >= upgrade_price * 0.75:
 		Global.upgrade_info[upgrade_name]["locked"] = false
 	
 	#Reveals upgrade if unlocked.
@@ -78,10 +75,12 @@ func _process(delta: float) -> void:
 		panel.modulate = Color(1, 1, 1)
 		lock_icon.hide()
 
-
 func _on_buy_pressed() -> void:
-	Global.souls -= upgrade_price
 	
+	#Subtracts the price of the upgrade from the global souls value.
+	Global.souls_info["souls"] -= upgrade_price
+	
+	#Carries out the effect of the upgrade based on the effect_amount and the toggles.
 	if affect_time == true:
 		Global.cod_info[affected_cod]["time"] /= effect_amount
 	else:
@@ -90,6 +89,8 @@ func _on_buy_pressed() -> void:
 		elif multiplicative == false:
 			Global.cod_info[affected_cod]["value"] += effect_amount
 	
+	#Sets this upgrade's bought variable to true, so that it will get hidden in the future.
 	Global.upgrade_info[upgrade_name]["bought"] = true
 	
+	#Deletes this instance.
 	queue_free()

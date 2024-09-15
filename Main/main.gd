@@ -1,28 +1,112 @@
 extends Control
 
 
-@onready var soul_counter: Label = $SoulCounter
+@onready var soul_counter: Label = $VBoxContainer/SoulCounter
+@onready var souls_per_second: Label = $VBoxContainer/SoulsPerSecond
 @onready var reap_button: Button = $ReapButton
+@onready var all_time: Label = $VBoxContainer/AllTime
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _ready() -> void:
+	load_game()
+
 func _process(delta: float) -> void:
-	soul_counter.text = "Souls: " + str(Global.souls)
 	
+	#Updates the souls and sps text.
+	soul_counter.text = "Souls: " + Global.format_number(Global.souls_info["souls"])
+	souls_per_second.text = "Per Second: " + Global.format_number(Global.souls_info["global_souls_per_second"])
+	all_time.text = "All Time: " + Global.format_number(Global.souls_info["all_time_souls"])
+	
+	#If animations are on, smoothly return the scythe's rotation to 0.
 	if Global.animations == true:
 		reap_button.rotation_degrees = lerp(reap_button.rotation_degrees, 0.0, 0.2)
 
-
-
 func _on_reap_button_pressed() -> void:
 	
-	Global.souls += 1
+	#Add 1 to the souls counter and all-time souls counter.
+	Global.souls_info["souls"] += 1
+	Global.souls_info["all_time_souls"] += 1
+	
+	#Set the scythe rotation to 45 degrees.
 	reap_button.rotation_degrees = 45
 	
+	#If animations are disabled, wait 0.05 seconds, then return the scythe's rotation to 0.
 	if Global.animations == false:
 		await get_tree().create_timer(0.05).timeout
 		reap_button.rotation_degrees = 0
 
-
 func _on_settings_button_pressed() -> void:
+	
+	#Opens the setting menu.
 	var instance = preload("res://Settings/settings_popup.tscn").instantiate()
 	get_tree().root.add_child(instance)
+
+func _on_save_timer_timeout() -> void:
+	save_game()
+
+func save_game(): 
+	
+	#Creates a dictionary to store save data.
+	var saved_data = {}
+	
+	#Creates entries in the dictionary for each variable/dictionary that needs to be saved.
+	saved_data["cod_info"] = Global.cod_info
+	saved_data["upgrade_info"] = Global.upgrade_info
+	saved_data["souls_info"] = Global.souls_info
+	saved_data["animations"] = Global.animations
+	saved_data["last_saved_time"] = Time.get_unix_time_from_system()
+	
+	#Opens or creates the save file, and stores the dictionary.
+	var file = FileAccess.open("user://savegame.data", FileAccess.WRITE)
+	file.store_var(saved_data)
+	file.close()
+
+func load_game():
+	
+	#If the save file exists, it opens it.
+	if FileAccess.file_exists("user://savegame.data"):
+		var file = FileAccess.open("user://savegame.data", FileAccess.READ)
+		
+		#The dictionary is taken from the save file and assigned to this new variable.
+		var saved_data = file.get_var()
+		
+		#Each entry in the dictionary is reassigned to its proper place.
+		Global.cod_info = saved_data["cod_info"]
+		Global.upgrade_info = saved_data["upgrade_info"]
+		Global.souls_info = saved_data["souls_info"]
+		Global.animations = saved_data["animations"]
+		Global.last_saved_time = saved_data["last_saved_time"]
+		
+		#Closes the file because we're done with it.
+		file.close()
+		
+		offline_progression()
+		
+	#If the file doesn't exist, initialize the variables.
+	else:
+		Global.souls_info = {
+			
+			"souls" : 0,
+			"highest_souls" : 0,
+			"all_time_souls" : 0,
+			"global_souls_per_second" : 0
+			
+		}
+
+func offline_progression():
+		
+		#Calculates how long its been since the game was closed.
+		var time_elapsed = Time.get_unix_time_from_system() - Global.last_saved_time
+		
+		#Multiplies that time by the global sps (rounded to one soul).
+		var offline_souls = snapped((time_elapsed * Global.souls_info["global_souls_per_second"]), 1)
+		
+		#Adds this value to the global soul counter and all-time souls.
+		Global.souls_info["souls"] += offline_souls
+		Global.souls_info["all_time_souls"] += offline_souls
+		
+		#Instantiates offline progression popup.
+		var instance = preload("res://Main/offline_progression_popup.tscn").instantiate()
+		instance.time_elapsed = snapped(time_elapsed, 1)
+		instance.offline_souls = offline_souls
+		self.add_child(instance)
