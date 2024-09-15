@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6frhi8fs01s"
-path="res://.godot/imported/grim-reaper.svg-0783ab9a88c0726096988f1f935a10ef.ctex"
+uid="uid://ct6kh1wyenx05"
+path="res://.godot/imported/Panel.png-71d5e465ce098dabc88fa82da4cb3ad7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/grim-reaper.svg"
-dest_files=["res://.godot/imported/grim-reaper.svg-0783ab9a88c0726096988f1f935a10ef.ctex"]
+source_file="res://Assets/Textures/Panel.png"
+dest_files=["res://.godot/imported/Panel.png-71d5e465ce098dabc88fa82da4cb3ad7.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

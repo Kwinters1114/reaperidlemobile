@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://53i282i8hktt" path="res://CODs/GasStationSushi/sushis.svg" id="3_qhgu0"]
 [ext_resource type="PackedScene" uid="uid://x7mo1q4x3t61" path="res://CODs/Templates/upgrade_panel_template.tscn" id="4_kopt6"]
 [ext_resource type="StyleBox" uid="uid://ct5yd6r3vc2id" path="res://Resources/wood_panel_disabled_style_box.tres" id="5_6rxql"]
-[ext_resource type="Texture2D" uid="uid://dpeowam834s4l" path="res://Assets/plain-padlock.svg" id="5_46c61"]
+[ext_resource type="Texture2D" uid="uid://dpeowam834s4l" path="res://Assets/Textures/plain-padlock.svg" id="5_46c61"]
 [ext_resource type="StyleBox" uid="uid://b51iagk840c21" path="res://Resources/wood_panel_hovered_style_box.tres" id="5_j708u"]
 [ext_resource type="StyleBox" uid="uid://bfqr6wj15ajt8" path="res://Resources/wood_panel_pressed_style_box.tres" id="6_43256"]
 [ext_resource type="StyleBox" uid="uid://cr3mq7lbmupfm" path="res://Resources/wood_panel_style_box.tres" id="7_1ithm"]

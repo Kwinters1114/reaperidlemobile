@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpeowam834s4l"
-path="res://.godot/imported/plain-padlock.svg-cf1d3c4ff06fe202f0871393e1c160e5.ctex"
+path="res://.godot/imported/plain-padlock.svg-14690df6454790e3f388a404701693e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/plain-padlock.svg"
-dest_files=["res://.godot/imported/plain-padlock.svg-cf1d3c4ff06fe202f0871393e1c160e5.ctex"]
+source_file="res://Assets/Textures/plain-padlock.svg"
+dest_files=["res://.godot/imported/plain-padlock.svg-14690df6454790e3f388a404701693e1.ctex"]
 
 [params]
 

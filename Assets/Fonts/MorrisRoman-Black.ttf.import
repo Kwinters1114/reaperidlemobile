@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://oxqrdq7x0bjp"
-path="res://.godot/imported/MorrisRomanAlternate-Black.ttf-81c670b98f31fd9b1f7fa021d784d4b8.fontdata"
+uid="uid://bfumhfy4tiuay"
+path="res://.godot/imported/MorrisRoman-Black.ttf-6e5645cc8f739fdf62ee16fd726cb4da.fontdata"
 
 [deps]
 
-source_file="res://Assets/MorrisRomanAlternate-Black.ttf"
-dest_files=["res://.godot/imported/MorrisRomanAlternate-Black.ttf-81c670b98f31fd9b1f7fa021d784d4b8.fontdata"]
+source_file="res://Assets/Fonts/MorrisRoman-Black.ttf"
+dest_files=["res://.godot/imported/MorrisRoman-Black.ttf-6e5645cc8f739fdf62ee16fd726cb4da.fontdata"]
 
 [params]
 

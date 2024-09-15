@@ -27,5 +27,12 @@ func _process(delta: float) -> void:
 
 func _on_cod_button_pressed() -> void:
 	
+	var sfx = preload("res://Main/sfx_player.tscn").instantiate()
+	sfx.volume = -4
+	sfx.pitch = randf_range(1.5, 2)
+	sfx.stream = load("res://Assets/Sounds/StoneSliding1.ogg")
+	self.add_child(sfx)
+
+	
 	#Switches the minimized variable to the opposite of its current value.
 	minimized = !minimized

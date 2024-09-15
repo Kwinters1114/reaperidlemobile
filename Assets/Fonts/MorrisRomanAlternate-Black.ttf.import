@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://psgbjjtpplj3"
-path="res://.godot/imported/AlbertTextBold.otf-12545429dcf1fa0babeadf5c6e12c607.fontdata"
+uid="uid://oxqrdq7x0bjp"
+path="res://.godot/imported/MorrisRomanAlternate-Black.ttf-5e96463838c7ce2a0a407e599de8ca90.fontdata"
 
 [deps]
 
-source_file="res://Assets/AlbertTextBold.otf"
-dest_files=["res://.godot/imported/AlbertTextBold.otf-12545429dcf1fa0babeadf5c6e12c607.fontdata"]
+source_file="res://Assets/Fonts/MorrisRomanAlternate-Black.ttf"
+dest_files=["res://.godot/imported/MorrisRomanAlternate-Black.ttf-5e96463838c7ce2a0a407e599de8ca90.fontdata"]
 
 [params]
 

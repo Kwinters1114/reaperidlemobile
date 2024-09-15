@@ -1,11 +1,11 @@
 extends Control
 
 
-@onready var soul_counter: Label = $VBoxContainer/SoulCounter
-@onready var souls_per_second: Label = $VBoxContainer/SoulsPerSecond
-@onready var reap_button: Button = $ReapButton
-@onready var all_time: Label = $VBoxContainer/AllTime
+@onready var soul_counter: Label = $MarginContainer/VBoxContainer/SoulCounter
+@onready var souls_per_second: Label = $MarginContainer/VBoxContainer/SoulsPerSecond
+@onready var all_time: Label = $MarginContainer/VBoxContainer/AllTime
 
+@onready var reap_button: Button = $ReapButton
 
 func _ready() -> void:
 	load_game()
@@ -28,12 +28,22 @@ func _on_reap_button_pressed() -> void:
 	Global.souls_info["all_time_souls"] += 1
 	
 	#Set the scythe rotation to 45 degrees.
-	reap_button.rotation_degrees = 45
+	if Global.animations == true:
+		reap_button.rotation_degrees = 45
+	else:
+		reap_button.rotation_degrees = 30
 	
 	#If animations are disabled, wait 0.05 seconds, then return the scythe's rotation to 0.
 	if Global.animations == false:
 		await get_tree().create_timer(0.05).timeout
 		reap_button.rotation_degrees = 0
+	
+	#Plays sound.
+	var sfx = preload("res://Main/sfx_player.tscn").instantiate()
+	sfx.volume = 0
+	sfx.pitch = randf_range(1.5, 2)
+	sfx.stream = load("res://Assets/Sounds/Slash" + str(randi_range(1 , 3)) + ".ogg")
+	self.add_child(sfx)
 
 func _on_settings_button_pressed() -> void:
 	
@@ -92,6 +102,10 @@ func load_game():
 			"global_souls_per_second" : 0
 			
 		}
+		
+
+#If false, animations will be disabled.
+		Global.animations = true
 
 func offline_progression():
 		

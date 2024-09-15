@@ -113,6 +113,14 @@ func _on_buy_pressed() -> void:
 	Global.souls_info["souls"] -= Global.cod_info[str(cod_name)]["price"]
 	Global.cod_info[str(cod_name)]["owned"] += 1
 	Global.cod_info[str(cod_name)]["price"] = snapped(base_price * (price_increase ** Global.cod_info[str(cod_name)]["owned"]) , 1)
+	
+	#Plays sound.
+	var sfx = preload("res://Main/sfx_player.tscn").instantiate()
+	sfx.volume = -12
+	sfx.pitch = 1
+	sfx.stream = load("res://Assets/Sounds/Angelic.ogg")
+	self.add_child(sfx)
+
 
 func _on_upgrades_pressed() -> void:
 	

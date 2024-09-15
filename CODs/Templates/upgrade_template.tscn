@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_q4811"]
 [ext_resource type="Script" path="res://CODs/Templates/upgrade_template.gd" id="2_p0mac"]
 [ext_resource type="Texture2D" uid="uid://53i282i8hktt" path="res://CODs/GasStationSushi/sushis.svg" id="3_b3fpd"]
-[ext_resource type="Texture2D" uid="uid://dpeowam834s4l" path="res://Assets/plain-padlock.svg" id="4_exjow"]
+[ext_resource type="Texture2D" uid="uid://dpeowam834s4l" path="res://Assets/Textures/plain-padlock.svg" id="4_exjow"]
 [ext_resource type="StyleBox" uid="uid://b51iagk840c21" path="res://Resources/wood_panel_hovered_style_box.tres" id="4_gcjwu"]
 [ext_resource type="StyleBox" uid="uid://ct5yd6r3vc2id" path="res://Resources/wood_panel_disabled_style_box.tres" id="4_sgv3v"]
 [ext_resource type="StyleBox" uid="uid://bfqr6wj15ajt8" path="res://Resources/wood_panel_pressed_style_box.tres" id="5_eo0a0"]
@@ -56,7 +56,7 @@ horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "This will be a brief and funny description of the upgrade."
 horizontal_alignment = 1
 autowrap_mode = 2

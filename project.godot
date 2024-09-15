@@ -14,8 +14,8 @@ config/name="ReaperIdleMobile"
 run/main_scene="res://Main/main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0.0646965, 0.0646965, 0.0646965, 1)
-boot_splash/image="res://Assets/grim-reaper.svg"
-config/icon="res://Assets/grim-reaper.svg"
+boot_splash/image="res://Assets/Textures/grim-reaper.svg"
+config/icon="res://Assets/Textures/grim-reaper.svg"
 
 [autoload]
 

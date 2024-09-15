@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cck3yon2moi5"]
+[gd_scene load_steps=8 format=3 uid="uid://cck3yon2moi5"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_5lb05"]
 [ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_aya3i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dv5s3qaqgj02d" path="res://Main/scythe.png" id="3_rbxox"]
 [ext_resource type="PackedScene" uid="uid://cn0vx2smc71j7" path="res://CODs/cods.tscn" id="4_wafcd"]
 [ext_resource type="Texture2D" uid="uid://biimmyujcdiqf" path="res://Settings/cog.svg" id="6_q85od"]
+[ext_resource type="AudioStream" uid="uid://c8fnq0ei0o1mn" path="res://Assets/Sounds/Music1.ogg" id="7_txitg"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -44,41 +45,46 @@ focus_mode = 0
 icon = ExtResource("3_rbxox")
 flat = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 16.0
-offset_bottom = 83.0
-grow_horizontal = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
 
-[node name="SoulCounter" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SoulCounter" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 96
 text = "Souls: 10
 "
-horizontal_alignment = 1
 
-[node name="SoulsPerSecond" type="Label" parent="VBoxContainer"]
+[node name="SoulsPerSecond" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Per Second: 10
 "
-horizontal_alignment = 1
 
-[node name="AllTime" type="Label" parent="VBoxContainer"]
+[node name="AllTime" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "All Time: 100"
-horizontal_alignment = 1
 
 [node name="CODs" parent="." instance=ExtResource("4_wafcd")]
 layout_mode = 1
 
 [node name="SettingsButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 107.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -119.0
+offset_right = -12.0
 offset_bottom = 118.0
+grow_horizontal = 0
 focus_mode = 0
 icon = ExtResource("6_q85od")
 flat = true
@@ -86,6 +92,11 @@ expand_icon = true
 
 [node name="SaveTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Music_Player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_txitg")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="ReapButton" to="." method="_on_reap_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

@@ -92,5 +92,16 @@ func _on_buy_pressed() -> void:
 	#Sets this upgrade's bought variable to true, so that it will get hidden in the future.
 	Global.upgrade_info[upgrade_name]["bought"] = true
 	
+	#Plays sound.
+	var sfx = preload("res://Main/sfx_player.tscn").instantiate()
+	sfx.volume = -12
+	sfx.pitch = 1
+	sfx.stream = load("res://Assets/Sounds/Angelic.ogg")
+	self.add_child(sfx)
+	
+	self.hide()
+	
+	await get_tree().create_timer(1).timeout
+	
 	#Deletes this instance.
 	queue_free()

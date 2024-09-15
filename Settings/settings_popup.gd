@@ -4,6 +4,11 @@ extends Control
 @onready var panel: Panel = $Panel
 @onready var animations_toggle: Button = $Panel/MarginContainer/VBoxContainer/HBoxContainer/AnimationsToggle
 
+@onready var SFX_BUS_ID = AudioServer.get_bus_index("SFX")
+@onready var MUSIC_BUS_ID = AudioServer.get_bus_index("Music")
+@onready var sfx: TextureButton = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/SFX
+@onready var music: TextureButton = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/Music
+
 
 var exit = false
 
@@ -19,9 +24,13 @@ func _ready() -> void:
 		color_rect.modulate.a = 1
 		panel.position.y = 250
 	
-	#Ensures that the animation toggle button matches the current animation state (enabled/disabled).
+	#Ensures that the toggle buttons match the current state (enabled/disabled).
 	animations_toggle.button_pressed = Global.animations
+	sfx.button_pressed = AudioServer.is_bus_mute(SFX_BUS_ID)
+	music.button_pressed = AudioServer.is_bus_mute(MUSIC_BUS_ID)
 	update_icons()
+	
+	
 
 func _process(delta: float) -> void:
 	
@@ -74,3 +83,14 @@ func _on_reset_button_pressed() -> void:
 	#Deletes the save file and reloads the main scene.
 	DirAccess.remove_absolute("user://savegame.data")
 	get_tree().reload_current_scene()
+	
+	Global.cod_info = {}
+	Global.upgrade_info = {}
+
+
+func _on_sfx_toggled(toggled_on: bool) -> void:
+	AudioServer.set_bus_mute(SFX_BUS_ID, toggled_on)
+
+
+func _on_music_toggled(toggled_on: bool) -> void:
+	AudioServer.set_bus_mute(MUSIC_BUS_ID, toggled_on)

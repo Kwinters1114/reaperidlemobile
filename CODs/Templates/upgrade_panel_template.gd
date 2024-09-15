@@ -15,6 +15,12 @@ func _ready() -> void:
 	
 	#Initializes the title text.
 	title.text = str(cod_name) + "\nUpgrades"
+	
+	var sfx = preload("res://Main/sfx_player.tscn").instantiate()
+	sfx.volume = -4
+	sfx.pitch = 1
+	sfx.stream = load("res://Assets/Sounds/StoneSliding1.ogg")
+	self.add_child(sfx)
 
 func _process(delta: float) -> void:
 	
@@ -42,9 +48,16 @@ func _process(delta: float) -> void:
 	
 	#If the container is off to the right of the screen, delete the entire instance.
 	if container.position.x > 720:
+		await get_tree().create_timer(1).timeout
 		queue_free()
 
 func _on_exit_pressed() -> void:
 	
 	#Set the shown variable to false, essentially starting the exit animation.
 	shown = false
+	
+	var sfx = preload("res://Main/sfx_player.tscn").instantiate()
+	sfx.volume = -4
+	sfx.pitch = randf_range(1.5, 2)
+	sfx.stream = load("res://Assets/Sounds/StoneSliding1.ogg")
+	self.add_child(sfx)

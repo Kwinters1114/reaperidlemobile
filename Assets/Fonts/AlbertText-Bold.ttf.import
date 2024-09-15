@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dnvcsjywoinse"
-path="res://.godot/imported/AlbertText-Bold.ttf-2ec910424b0f4494442dea043fbaedad.fontdata"
+path="res://.godot/imported/AlbertText-Bold.ttf-f0c438abd69c1d8f1deb9bb662bfee84.fontdata"
 
 [deps]
 
-source_file="res://Assets/AlbertText-Bold.ttf"
-dest_files=["res://.godot/imported/AlbertText-Bold.ttf-2ec910424b0f4494442dea043fbaedad.fontdata"]
+source_file="res://Assets/Fonts/AlbertText-Bold.ttf"
+dest_files=["res://.godot/imported/AlbertText-Bold.ttf-f0c438abd69c1d8f1deb9bb662bfee84.fontdata"]
 
 [params]
 
