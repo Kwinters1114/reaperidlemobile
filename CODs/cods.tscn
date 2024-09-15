@@ -1,0 +1,124 @@
+[gd_scene load_steps=14 format=3 uid="uid://cn0vx2smc71j7"]
+
+[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_i2rt7"]
+[ext_resource type="Script" path="res://CODs/cods.gd" id="2_1ftwy"]
+[ext_resource type="StyleBox" uid="uid://cr3mq7lbmupfm" path="res://Resources/wood_panel_style_box.tres" id="3_fy5ct"]
+[ext_resource type="PackedScene" uid="uid://dtgdtnx6osy5s" path="res://CODs/Templates/cod_template.tscn" id="3_k1g55"]
+[ext_resource type="StyleBox" uid="uid://b51iagk840c21" path="res://Resources/wood_panel_hovered_style_box.tres" id="3_plltj"]
+[ext_resource type="StyleBox" uid="uid://bfqr6wj15ajt8" path="res://Resources/wood_panel_pressed_style_box.tres" id="4_2v5js"]
+[ext_resource type="PackedScene" uid="uid://rohot7u66bka" path="res://CODs/GasStationSushi/gas_station_sushi_upgrades.tscn" id="6_dd8r1"]
+[ext_resource type="Texture2D" uid="uid://cvr7jxp5ks0kl" path="res://CODs/Rednecks/sawed-off-shotgun.svg" id="7_gtt4r"]
+[ext_resource type="PackedScene" uid="uid://cj7yu1qn4m23r" path="res://CODs/Rednecks/redneck_upgrades.tscn" id="8_byq2b"]
+[ext_resource type="Texture2D" uid="uid://dokvaebxeetv4" path="res://CODs/OfficeChairs/office-chair.svg" id="8_m6eqo"]
+[ext_resource type="Texture2D" uid="uid://bdx5bwqns3all" path="res://CODs/Clowns/clown.svg" id="9_j6d48"]
+[ext_resource type="PackedScene" uid="uid://caaw7ysh76yo8" path="res://CODs/OfficeChairs/office_chairs_upgrades.tscn" id="10_qb76e"]
+[ext_resource type="PackedScene" uid="uid://4ftm2uuiifyw" path="res://CODs/Clowns/clowns_upgrades.tscn" id="12_wggvt"]
+
+[node name="CODs" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_i2rt7")
+script = ExtResource("2_1ftwy")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1200.0
+offset_bottom = 1013.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="COD_Button" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -257.0
+offset_top = -73.0
+offset_right = 255.862
+offset_bottom = 46.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = ExtResource("3_plltj")
+theme_override_styles/pressed = ExtResource("4_2v5js")
+theme_override_styles/normal = ExtResource("3_fy5ct")
+text = "Causes of Death"
+
+[node name="Panel" type="Panel" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Container/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 400
+
+[node name="GasStationSushi" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
+layout_mode = 2
+base_price = 10
+upgrades_scene = ExtResource("6_dd8r1")
+
+[node name="Rednecks" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
+layout_mode = 2
+cod_name = "Rednecks"
+cod_icon = ExtResource("7_gtt4r")
+base_time = 10.0
+base_value = 5.0
+base_price = 100
+previous_cod_name = "Gas Station Sushi"
+upgrades_scene = ExtResource("8_byq2b")
+
+[node name="OfficeChairs" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
+layout_mode = 2
+cod_name = "Office Chairs"
+cod_icon = ExtResource("8_m6eqo")
+base_time = 20.0
+base_value = 20.0
+base_price = 1000
+previous_cod_name = "Rednecks"
+upgrades_scene = ExtResource("10_qb76e")
+
+[node name="Clowns" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
+layout_mode = 2
+cod_name = "Clowns"
+cod_icon = ExtResource("9_j6d48")
+base_time = 40.0
+base_value = 60.0
+base_price = 10000
+previous_cod_name = "Office Chairs"
+upgrades_scene = ExtResource("12_wggvt")
+
+[node name="Empty" type="Label" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Container/COD_Button" to="." method="_on_cod_button_pressed"]

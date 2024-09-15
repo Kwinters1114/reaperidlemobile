@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://buo32rgi3lfa"]
+
+[ext_resource type="FontFile" uid="uid://psgbjjtpplj3" path="res://Assets/AlbertTextBold.otf" id="1_ojyoq"]
+[ext_resource type="StyleBox" uid="uid://wf7rf8f2qd3t" path="res://Resources/stone_panel_style_box.tres" id="2_wigkw"]
+
+[resource]
+Button/fonts/font = ExtResource("1_ojyoq")
+Label/fonts/font = ExtResource("1_ojyoq")
+Panel/styles/panel = ExtResource("2_wigkw")
+PanelContainer/styles/panel = ExtResource("2_wigkw")

@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://cck3yon2moi5"]
+
+[ext_resource type="Script" path="res://Main/main.gd" id="1_5lb05"]
+[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_aya3i"]
+[ext_resource type="Texture2D" uid="uid://dkdw6osdn502m" path="res://Main/Backdrop.png" id="3_kdyhd"]
+[ext_resource type="Texture2D" uid="uid://dv5s3qaqgj02d" path="res://Main/scythe.png" id="3_rbxox"]
+[ext_resource type="PackedScene" uid="uid://cn0vx2smc71j7" path="res://CODs/cods.tscn" id="4_wafcd"]
+[ext_resource type="Texture2D" uid="uid://biimmyujcdiqf" path="res://Settings/cog.svg" id="6_q85od"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aya3i")
+script = ExtResource("1_5lb05")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kdyhd")
+
+[node name="ReapButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.196
+anchor_top = 0.664
+anchor_right = 0.196
+anchor_bottom = 0.664
+offset_left = -41.12
+offset_top = -529.92
+offset_right = 478.88
+offset_bottom = 23.08
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(49, 416)
+focus_mode = 0
+icon = ExtResource("3_rbxox")
+flat = true
+
+[node name="SoulCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.5
+offset_top = 32.0
+offset_right = 135.5
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Souls: 10
+"
+horizontal_alignment = 1
+
+[node name="CODs" parent="." instance=ExtResource("4_wafcd")]
+layout_mode = 1
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 107.0
+offset_bottom = 118.0
+focus_mode = 0
+icon = ExtResource("6_q85od")
+flat = true
+expand_icon = true
+
+[connection signal="pressed" from="ReapButton" to="." method="_on_reap_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]

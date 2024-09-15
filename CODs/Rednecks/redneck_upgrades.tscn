@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj7yu1qn4m23r"]
+
+[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_airt2"]
+[ext_resource type="Script" path="res://CODs/Templates/upgrade_panel_template.gd" id="2_1o0q7"]
+[ext_resource type="PackedScene" uid="uid://8il4f3r82eq2" path="res://CODs/Templates/upgrade_template.tscn" id="3_27rso"]
+[ext_resource type="Texture2D" uid="uid://cfniuyqjsfofx" path="res://CODs/Rednecks/pistol-gun.svg" id="4_ly7bk"]
+[ext_resource type="Texture2D" uid="uid://blg7a2h3es6ol" path="res://CODs/Rednecks/usa-flag.svg" id="5_bnq3f"]
+
+[node name="UpgradePanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_airt2")
+script = ExtResource("2_1o0q7")
+cod_name = "Rednecks"
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1200.0
+offset_bottom = 1013.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 52.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Exit" type="Button" parent="Container/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -97.0
+offset_top = 40.0
+offset_right = -47.0
+offset_bottom = 115.0
+grow_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+text = "X"
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Container/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "COD Name
+Upgrades"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Container/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 400
+
+[node name="TresspassingSigns" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_27rso")]
+layout_mode = 2
+upgrade_name = "Hand Guns"
+upgrade_icon = ExtResource("4_ly7bk")
+upgrade_description = "For when you want to get close and personal."
+upgrade_price = 250
+affected_cod = "Rednecks"
+effect_amount = 5.0
+
+[node name="UpgradeTemplate2" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_27rso")]
+layout_mode = 2
+upgrade_name = "Patriotism"
+upgrade_icon = ExtResource("5_bnq3f")
+upgrade_description = "Honestly, more dangerous than the gun itself."
+upgrade_price = 750
+affected_cod = "Rednecks"
+multiplicative = true
+effect_amount = 3.0
+
+[node name="Empty" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Container/Panel/Exit" to="." method="_on_exit_pressed"]
