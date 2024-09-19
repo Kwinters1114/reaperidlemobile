@@ -19,6 +19,7 @@ config/icon="res://Assets/Textures/grim-reaper.svg"
 
 [autoload]
 
+BigNumbers="*res://BigNumbers.gd"
 Global="*res://Global.gd"
 
 [display]

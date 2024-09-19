@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn0vx2smc71j7"]
+[gd_scene load_steps=12 format=3 uid="uid://cn0vx2smc71j7"]
 
 [ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_i2rt7"]
 [ext_resource type="Script" path="res://CODs/cods.gd" id="2_1ftwy"]
@@ -7,12 +7,10 @@
 [ext_resource type="StyleBox" uid="uid://b51iagk840c21" path="res://Resources/wood_panel_hovered_style_box.tres" id="3_plltj"]
 [ext_resource type="StyleBox" uid="uid://bfqr6wj15ajt8" path="res://Resources/wood_panel_pressed_style_box.tres" id="4_2v5js"]
 [ext_resource type="PackedScene" uid="uid://rohot7u66bka" path="res://CODs/GasStationSushi/gas_station_sushi_upgrades.tscn" id="6_dd8r1"]
-[ext_resource type="Texture2D" uid="uid://cvr7jxp5ks0kl" path="res://CODs/Rednecks/sawed-off-shotgun.svg" id="7_gtt4r"]
-[ext_resource type="PackedScene" uid="uid://cj7yu1qn4m23r" path="res://CODs/Rednecks/redneck_upgrades.tscn" id="8_byq2b"]
-[ext_resource type="Texture2D" uid="uid://dokvaebxeetv4" path="res://CODs/OfficeChairs/office-chair.svg" id="8_m6eqo"]
-[ext_resource type="Texture2D" uid="uid://bdx5bwqns3all" path="res://CODs/Clowns/clown.svg" id="9_j6d48"]
-[ext_resource type="PackedScene" uid="uid://caaw7ysh76yo8" path="res://CODs/OfficeChairs/office_chairs_upgrades.tscn" id="10_qb76e"]
-[ext_resource type="PackedScene" uid="uid://4ftm2uuiifyw" path="res://CODs/Clowns/clowns_upgrades.tscn" id="12_wggvt"]
+[ext_resource type="Texture2D" uid="uid://c3c6qyhc366a3" path="res://CODs/HomeRemedies/apothecary.svg" id="8_o7qd6"]
+[ext_resource type="PackedScene" uid="uid://l3fc5dtaophi" path="res://CODs/HomeRemedies/home_remedies_upgrades.tscn" id="9_vt2t6"]
+[ext_resource type="Texture2D" uid="uid://lhvfmd2c8nbk" path="res://CODs/NuclearWaste/nuclear-waste.svg" id="10_efo3w"]
+[ext_resource type="PackedScene" uid="uid://bb2x64yggvubp" path="res://CODs/NuclearWaste/nuclear_waste_upgrades.tscn" id="11_mk2yc"]
 
 [node name="CODs" type="Control"]
 layout_mode = 3
@@ -85,38 +83,29 @@ theme_override_constants/separation = 400
 
 [node name="GasStationSushi" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
 layout_mode = 2
-base_price = 10
+base_time = 10
+base_price = "10"
 upgrades_scene = ExtResource("6_dd8r1")
 
-[node name="Rednecks" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
+[node name="HomeRemedies" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
 layout_mode = 2
-cod_name = "Rednecks"
-cod_icon = ExtResource("7_gtt4r")
-base_time = 10.0
-base_value = 5.0
-base_price = 100
+cod_name = "Home Remedies"
+cod_icon = ExtResource("8_o7qd6")
+base_time = 25
+base_value = "5"
+base_price = "100"
 previous_cod_name = "Gas Station Sushi"
-upgrades_scene = ExtResource("8_byq2b")
+upgrades_scene = ExtResource("9_vt2t6")
 
-[node name="OfficeChairs" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
+[node name="NuclearWaste" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
 layout_mode = 2
-cod_name = "Office Chairs"
-cod_icon = ExtResource("8_m6eqo")
-base_time = 20.0
-base_value = 20.0
-base_price = 1000
-previous_cod_name = "Rednecks"
-upgrades_scene = ExtResource("10_qb76e")
-
-[node name="Clowns" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_k1g55")]
-layout_mode = 2
-cod_name = "Clowns"
-cod_icon = ExtResource("9_j6d48")
-base_time = 40.0
-base_value = 60.0
-base_price = 10000
-previous_cod_name = "Office Chairs"
-upgrades_scene = ExtResource("12_wggvt")
+cod_name = "Nuclear Waste"
+cod_icon = ExtResource("10_efo3w")
+base_time = 50
+base_value = "15"
+base_price = "1000"
+previous_cod_name = "Home Remedies"
+upgrades_scene = ExtResource("11_mk2yc")
 
 [node name="Empty" type="Label" parent="Container/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

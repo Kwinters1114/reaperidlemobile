@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://4ftm2uuiifyw"]
+[gd_scene load_steps=6 format=3 uid="uid://l3fc5dtaophi"]
 
-[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_uujfm"]
-[ext_resource type="Script" path="res://CODs/Templates/upgrade_panel_template.gd" id="2_6lpl6"]
+[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_o86qu"]
+[ext_resource type="Script" path="res://CODs/Templates/upgrade_panel_template.gd" id="2_0d4or"]
+[ext_resource type="PackedScene" uid="uid://8il4f3r82eq2" path="res://CODs/Templates/upgrade_template.tscn" id="3_rmmxy"]
+[ext_resource type="Texture2D" uid="uid://d13lvkd8noftn" path="res://CODs/HomeRemedies/medical-thermometer.svg" id="4_yfrhl"]
+[ext_resource type="Texture2D" uid="uid://u3hfjd5rajoa" path="res://CODs/HomeRemedies/eyedropper.svg" id="5_evmbi"]
 
 [node name="UpgradePanel" type="Control"]
 layout_mode = 3
@@ -11,9 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_uujfm")
-script = ExtResource("2_6lpl6")
-cod_name = "Clowns"
+theme = ExtResource("1_o86qu")
+script = ExtResource("2_0d4or")
+cod_name = "Home Remedies"
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -76,11 +79,41 @@ text = "COD Name
 Upgrades"
 horizontal_alignment = 1
 
+[node name="Spacer" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
 [node name="ScrollContainer" type="ScrollContainer" parent="Container/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-horizontal_scroll_mode = 0
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 400
+
+[node name="MercuryElixr" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_rmmxy")]
+layout_mode = 2
+upgrade_name = "Mercury Elixr"
+upgrade_icon = ExtResource("4_yfrhl")
+upgrade_description = "Ancient Chinese alchemists used merucry as an elixr of eternal life, so why shouldn't I?"
+upgrade_price = "500"
+affected_cod = "Home Remedies"
+effect_amount = "5"
+
+[node name="SnakeOil" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_rmmxy")]
+layout_mode = 2
+upgrade_name = "Snake Oil"
+upgrade_icon = ExtResource("5_evmbi")
+upgrade_description = "The guy online said this stuff wil cure just about anything!"
+upgrade_price = "1000"
+affected_cod = "Home Remedies"
+multiplicative = true
+effect_amount = "2"
+
+[node name="Empty" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
 [connection signal="pressed" from="Container/Panel/Exit" to="." method="_on_exit_pressed"]

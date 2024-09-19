@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8il4f3r82eq2"]
+[gd_scene load_steps=10 format=3 uid="uid://8il4f3r82eq2"]
 
 [ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_q4811"]
 [ext_resource type="Script" path="res://CODs/Templates/upgrade_template.gd" id="2_p0mac"]
@@ -8,6 +8,13 @@
 [ext_resource type="StyleBox" uid="uid://ct5yd6r3vc2id" path="res://Resources/wood_panel_disabled_style_box.tres" id="4_sgv3v"]
 [ext_resource type="StyleBox" uid="uid://bfqr6wj15ajt8" path="res://Resources/wood_panel_pressed_style_box.tres" id="5_eo0a0"]
 [ext_resource type="StyleBox" uid="uid://cr3mq7lbmupfm" path="res://Resources/wood_panel_style_box.tres" id="6_li3wx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kh4hx"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
 
 [node name="UpgradeTemplate" type="Control"]
 layout_mode = 3
@@ -75,6 +82,7 @@ autowrap_mode = 2
 [node name="Buy" type="Button" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 0
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = ExtResource("4_sgv3v")
 theme_override_styles/hover = ExtResource("4_gcjwu")
@@ -89,5 +97,15 @@ size_flags_horizontal = 4
 texture = ExtResource("4_exjow")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="FadeWhite" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 396.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kh4hx")
 
 [connection signal="pressed" from="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Buy" to="." method="_on_buy_pressed"]

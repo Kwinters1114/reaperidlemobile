@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 		if minimized == true:
 			container.position.y = lerp(container.position.y, 1200.0, 8 * delta)
 		else:
-			container.position.y = lerp(container.position.y, 200.0, 8 * delta)
+			container.position.y = lerp(container.position.y, 250.0, 8 * delta)
 	
 	#If animations are disabled:
 	else:
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		if minimized == true:
 			container.position.y = 1200
 		else:
-			container.position.y = 200
+			container.position.y = 250
 
 func _on_cod_button_pressed() -> void:
 	

@@ -34,7 +34,7 @@ upgrades_scene = ExtResource("4_kopt6")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 394.176
+offset_bottom = 389.0
 grow_horizontal = 2
 mouse_filter = 1
 
@@ -73,13 +73,23 @@ theme_override_font_sizes/font_size = 48
 text = "Gas Station Sushi"
 horizontal_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 16)
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_ffshh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kkgmk")
 value = 50.0
 show_percentage = false
+
+[node name="TimeRemaining" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "1:05"
 
 [node name="SPS" type="Label" parent="Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

@@ -79,13 +79,9 @@ func _on_animations_toggle_pressed() -> void:
 	update_icons()
 
 func _on_reset_button_pressed() -> void:
+	var instance = load("res://Settings/reset_confirmation_popup.tscn").instantiate()
+	get_tree().root.add_child(instance)
 	
-	#Deletes the save file and reloads the main scene.
-	DirAccess.remove_absolute("user://savegame.data")
-	get_tree().reload_current_scene()
-	
-	Global.cod_info = {}
-	Global.upgrade_info = {}
 
 
 func _on_sfx_toggled(toggled_on: bool) -> void:

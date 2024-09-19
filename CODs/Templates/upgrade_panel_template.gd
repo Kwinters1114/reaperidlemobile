@@ -11,7 +11,7 @@ var shown = true
 func _ready() -> void:
 	
 	#Sets the panel's position to be to the right of the screen.
-	container.position = Vector2(720, 50)
+	container.position = Vector2(720, 100)
 	
 	#Initializes the title text.
 	title.text = str(cod_name) + "\nUpgrades"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blg7a2h3es6ol"
-path="res://.godot/imported/usa-flag.svg-e4d4d5113a295ed26755b452b0a296f7.ctex"
+uid="uid://d2kwp8x24etvv"
+path="res://.godot/imported/scythe.svg-0c5d57616664fc2a3562fa34efa5e7cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CODs/Rednecks/usa-flag.svg"
-dest_files=["res://.godot/imported/usa-flag.svg-e4d4d5113a295ed26755b452b0a296f7.ctex"]
+source_file="res://Main/Scythe/scythe.svg"
+dest_files=["res://.godot/imported/scythe.svg-0c5d57616664fc2a3562fa34efa5e7cd.ctex"]
 
 [params]
 

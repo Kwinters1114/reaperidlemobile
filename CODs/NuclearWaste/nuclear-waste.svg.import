@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvr7jxp5ks0kl"
-path="res://.godot/imported/sawed-off-shotgun.svg-b4f32a4469cb447d93d984f1e5e1d766.ctex"
+uid="uid://lhvfmd2c8nbk"
+path="res://.godot/imported/nuclear-waste.svg-3dda25c8fd561eeb322d05e5d64bab64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CODs/Rednecks/sawed-off-shotgun.svg"
-dest_files=["res://.godot/imported/sawed-off-shotgun.svg-b4f32a4469cb447d93d984f1e5e1d766.ctex"]
+source_file="res://CODs/NuclearWaste/nuclear-waste.svg"
+dest_files=["res://.godot/imported/nuclear-waste.svg-3dda25c8fd561eeb322d05e5d64bab64.ctex"]
 
 [params]
 

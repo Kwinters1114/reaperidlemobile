@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dokvaebxeetv4"
-path="res://.godot/imported/office-chair.svg-2ffa36e3b1f86aa63fd7863d52d85d1a.ctex"
+uid="uid://c2227s4jvpxoc"
+path="res://.godot/imported/nuclear-plant.svg-2076768f8295794b421d8b3a30ac4e2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CODs/OfficeChairs/office-chair.svg"
-dest_files=["res://.godot/imported/office-chair.svg-2ffa36e3b1f86aa63fd7863d52d85d1a.ctex"]
+source_file="res://CODs/NuclearWaste/nuclear-plant.svg"
+dest_files=["res://.godot/imported/nuclear-plant.svg-2076768f8295794b421d8b3a30ac4e2e.ctex"]
 
 [params]
 

@@ -3,7 +3,6 @@ extends Control
 
 @onready var soul_counter: Label = $MarginContainer/VBoxContainer/SoulCounter
 @onready var souls_per_second: Label = $MarginContainer/VBoxContainer/SoulsPerSecond
-@onready var all_time: Label = $MarginContainer/VBoxContainer/AllTime
 
 @onready var reap_button: Button = $ReapButton
 
@@ -13,9 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	#Updates the souls and sps text.
-	soul_counter.text = "Souls: " + Global.format_number(Global.souls_info["souls"])
-	souls_per_second.text = "Per Second: " + Global.format_number(Global.souls_info["global_souls_per_second"])
-	all_time.text = "All Time: " + Global.format_number(Global.souls_info["all_time_souls"])
+	soul_counter.text = "Souls: " + BigNumbers.array_to_display(BigNumbers.truncate_array(Global.souls_info["souls"], 0))
+	souls_per_second.text = "Per Second: " + BigNumbers.array_to_display(Global.souls_info["global_souls_per_second"])
 	
 	#If animations are on, smoothly return the scythe's rotation to 0.
 	if Global.animations == true:
@@ -24,8 +22,14 @@ func _process(delta: float) -> void:
 func _on_reap_button_pressed() -> void:
 	
 	#Add 1 to the souls counter and all-time souls counter.
-	Global.souls_info["souls"] += 1
-	Global.souls_info["all_time_souls"] += 1
+	Global.souls_info["souls"] = BigNumbers.add_arrays(Global.souls_info["souls"], Global.souls_info["souls_per_click"])
+	Global.souls_info["all_time_souls"] = BigNumbers.add_arrays(Global.souls_info["all_time_souls"], Global.souls_info["souls_per_click"])
+	
+	#Spawn in the floating text.
+	var instance = load("res://Main/floating_souls_text.tscn").instantiate()
+	instance.position = Vector2(500, 450)
+	instance.display_amount = BigNumbers.array_to_display(Global.souls_info["souls_per_click"])
+	get_tree().root.add_child(instance)
 	
 	#Set the scythe rotation to 45 degrees.
 	if Global.animations == true:
@@ -96,15 +100,16 @@ func load_game():
 	else:
 		Global.souls_info = {
 			
-			"souls" : 0,
-			"highest_souls" : 0,
-			"all_time_souls" : 0,
-			"global_souls_per_second" : 0
+			"souls" : [0],
+			"highest_souls" : [0],
+			"all_time_souls" : [0],
+			"global_souls_per_second" : [0],
+			"souls_per_click" : [1]
 			
 		}
 		
 
-#If false, animations will be disabled.
+		#If false, animations will be disabled.
 		Global.animations = true
 
 func offline_progression():
@@ -112,15 +117,26 @@ func offline_progression():
 		#Calculates how long its been since the game was closed.
 		var time_elapsed = Time.get_unix_time_from_system() - Global.last_saved_time
 		
+		#Converts that time into an array.
+		var time_elapsed_array = BigNumbers.string_to_array(str(time_elapsed))
+		
 		#Multiplies that time by the global sps (rounded to one soul).
-		var offline_souls = snapped((time_elapsed * Global.souls_info["global_souls_per_second"]), 1)
+		var offline_souls = BigNumbers.multiply_arrays(time_elapsed_array, Global.souls_info["global_souls_per_second"])
 		
 		#Adds this value to the global soul counter and all-time souls.
-		Global.souls_info["souls"] += offline_souls
-		Global.souls_info["all_time_souls"] += offline_souls
+		Global.souls_info["souls"] = BigNumbers.add_arrays(Global.souls_info["souls"], offline_souls)
+		Global.souls_info["all_time_souls"] = BigNumbers.add_arrays(Global.souls_info["all_time_souls"], offline_souls)
 		
 		#Instantiates offline progression popup.
 		var instance = preload("res://Main/offline_progression_popup.tscn").instantiate()
 		instance.time_elapsed = snapped(time_elapsed, 1)
 		instance.offline_souls = offline_souls
 		self.add_child(instance)
+
+func _on_upgrade_button_pressed() -> void:
+	var instance = load("res://Main/Scythe/scythe_upgrades.tscn").instantiate()
+	get_tree().root.add_child(instance)
+
+func _on_info_button_pressed() -> void:
+	var instance = load("res://Main/Info/info_panel.tscn").instantiate()
+	get_tree().root.add_child(instance)

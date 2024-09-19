@@ -18,7 +18,7 @@ extends Node
 func _process(delta: float) -> void:
 	
 	#If current souls is higher than the current highest, make it the new highest.
-	if souls_info["souls"] > souls_info["highest_souls"]:
+	if BigNumbers.array_is_greater_than(souls_info["souls"], souls_info["highest_souls"]) == true:
 		souls_info["highest_souls"] = souls_info["souls"]
 	
 	update_souls_per_second()
@@ -27,32 +27,9 @@ func _process(delta: float) -> void:
 func update_souls_per_second():
 	
 	#First set global sps to 0.
-	souls_info["global_souls_per_second"] = 0
+	souls_info["global_souls_per_second"] = [0]
 	
 	#For every COD, add their sps to the global sps.
 	for cod in cod_info:
-		souls_info["global_souls_per_second"] += float(cod_info[cod]["souls_per_second"])
-
-
-func format_number(raw_number):
-	var formatted_number : String
-	
-	if raw_number >= 1000000000:
-		if raw_number >= 10000000000:
-			formatted_number = str(snapped(raw_number / 1000000000, 1)) + "B"
-		else:
-			formatted_number = str(snapped(raw_number / 1000000000, 0.1)) + "B"
-	elif raw_number >= 1000000:
-		if raw_number >= 10000000:
-			formatted_number = str(snapped(raw_number / 1000000, 1)) + "M"
-		else:
-			formatted_number = str(snapped(raw_number / 1000000, 0.1)) + "M"
-	elif raw_number >= 1000:
-		if raw_number >= 10000:
-			formatted_number = str(snapped(raw_number / 1000, 1)) + "K"
-		else:
-			formatted_number = str(snapped(raw_number / 1000, 0.1)) + "K"
-	else:
-		formatted_number = str(raw_number)
-	
-	return formatted_number
+		
+		souls_info["global_souls_per_second"] = BigNumbers.add_arrays(souls_info["global_souls_per_second"], cod_info[cod]["souls_per_second"])

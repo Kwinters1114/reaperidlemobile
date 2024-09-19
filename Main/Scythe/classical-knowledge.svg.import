@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2kwp8x24etvv"
-path="res://.godot/imported/scythe.svg-324d37aa0f0665f57c875ee1fc05b81f.ctex"
+uid="uid://c0ya18uqrswqo"
+path="res://.godot/imported/classical-knowledge.svg-59a5a32f4c43dd49a689e30fb3e36c01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main/scythe.svg"
-dest_files=["res://.godot/imported/scythe.svg-324d37aa0f0665f57c875ee1fc05b81f.ctex"]
+source_file="res://Main/Scythe/classical-knowledge.svg"
+dest_files=["res://.godot/imported/classical-knowledge.svg-59a5a32f4c43dd49a689e30fb3e36c01.ctex"]
 
 [params]
 

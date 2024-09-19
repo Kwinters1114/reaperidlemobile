@@ -100,28 +100,28 @@ layout_mode = 2
 upgrade_name = "Poor Refridgeration"
 upgrade_icon = ExtResource("4_2ifjv")
 upgrade_description = "What did you expet from a gas station?"
-upgrade_price = 50
 affected_cod = "Gas Station Sushi"
-effect_amount = 2.0
+effect_amount = "2"
 
 [node name="DirectSunlight" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_jxd7a")]
 layout_mode = 2
 upgrade_name = "Direct Sunlight"
 upgrade_icon = ExtResource("5_fwt60")
-upgrade_description = "Letting your sushi age in the sun really adds to the flavor."
+upgrade_description = "Letting your sushi age in the sun really brings out the flavor."
+upgrade_price = "500"
 affected_cod = "Gas Station Sushi"
 multiplicative = true
-effect_amount = 2.0
+effect_amount = "2"
 
 [node name="SalmonellaPoisoning" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_jxd7a")]
 layout_mode = 2
 upgrade_name = "Salmonella Poisoning"
 upgrade_icon = ExtResource("6_ce8r8")
-upgrade_description = "Salmon-ella.... eh? eh?"
-upgrade_price = 500
+upgrade_description = "Salmon-ella..."
+upgrade_price = "2500"
 affected_cod = "Gas Station Sushi"
 affect_time = true
-effect_amount = 2.0
+effect_amount = "1.5"
 
 [node name="Empty" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

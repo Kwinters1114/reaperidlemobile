@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj7yu1qn4m23r"]
+[gd_scene load_steps=6 format=3 uid="uid://bb2x64yggvubp"]
 
-[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_airt2"]
-[ext_resource type="Script" path="res://CODs/Templates/upgrade_panel_template.gd" id="2_1o0q7"]
-[ext_resource type="PackedScene" uid="uid://8il4f3r82eq2" path="res://CODs/Templates/upgrade_template.tscn" id="3_27rso"]
-[ext_resource type="Texture2D" uid="uid://cfniuyqjsfofx" path="res://CODs/Rednecks/pistol-gun.svg" id="4_ly7bk"]
-[ext_resource type="Texture2D" uid="uid://blg7a2h3es6ol" path="res://CODs/Rednecks/usa-flag.svg" id="5_bnq3f"]
+[ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_tso00"]
+[ext_resource type="Script" path="res://CODs/Templates/upgrade_panel_template.gd" id="2_wy66e"]
+[ext_resource type="PackedScene" uid="uid://8il4f3r82eq2" path="res://CODs/Templates/upgrade_template.tscn" id="3_irwl0"]
+[ext_resource type="Texture2D" uid="uid://djk08selev0ty" path="res://CODs/NuclearWaste/radioactive.svg" id="4_y5sb4"]
+[ext_resource type="Texture2D" uid="uid://bkqtle6jo03au" path="res://CODs/NuclearWaste/splashy-stream.svg" id="5_3j3yu"]
 
 [node name="UpgradePanel" type="Control"]
 layout_mode = 3
@@ -14,9 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_airt2")
-script = ExtResource("2_1o0q7")
-cod_name = "Rednecks"
+theme = ExtResource("1_tso00")
+script = ExtResource("2_wy66e")
+cod_name = "Nuclear Waste"
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -82,11 +82,11 @@ horizontal_alignment = 1
 [node name="Spacer" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Container/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
@@ -94,24 +94,25 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 400
 
-[node name="TresspassingSigns" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_27rso")]
+[node name="RadiationSickness" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_irwl0")]
 layout_mode = 2
-upgrade_name = "Hand Guns"
-upgrade_icon = ExtResource("4_ly7bk")
-upgrade_description = "For when you want to get close and personal."
-upgrade_price = 250
-affected_cod = "Rednecks"
-effect_amount = 5.0
-
-[node name="UpgradeTemplate2" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_27rso")]
-layout_mode = 2
-upgrade_name = "Patriotism"
-upgrade_icon = ExtResource("5_bnq3f")
-upgrade_description = "Honestly, more dangerous than the gun itself."
-upgrade_price = 750
-affected_cod = "Rednecks"
+upgrade_name = "Radiation Sickness"
+upgrade_icon = ExtResource("4_y5sb4")
+upgrade_description = "Wait, where are my super powers?"
+upgrade_price = "2500"
+affected_cod = "Nuclear Waste"
 multiplicative = true
-effect_amount = 3.0
+effect_amount = "2"
+
+[node name="IllegalDumping" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_irwl0")]
+layout_mode = 2
+upgrade_name = "Illegal Dumping"
+upgrade_icon = ExtResource("5_3j3yu")
+upgrade_description = "Why pay a fee, when you can dump it for free!"
+upgrade_price = "10000"
+affected_cod = "Nuclear Waste"
+affect_time = true
+effect_amount = "2"
 
 [node name="Empty" type="Label" parent="Container/Panel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

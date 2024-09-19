@@ -1,32 +1,26 @@
 extends Control
 
+
 @onready var color_rect: ColorRect = $ColorRect
 @onready var panel: Panel = $Panel
 
-@onready var gone_for: Label = $Panel/MarginContainer/VBoxContainer/GoneFor
-@onready var made: Label = $Panel/MarginContainer/VBoxContainer/Made
 
 var exit = false
 
-var time_elapsed
-var offline_souls
-
 func _ready() -> void:
 	
-	#Set panel and bg at final state.
-	color_rect.modulate.a = 1
-	panel.position.y = 250
+	#If animations are true, set start positions.
+	if Global.animations == true:
+		color_rect.modulate.a = 0.0
+		panel.position.y = -550
 	
-	var formatted_time_elapsed = format_time(time_elapsed)
-	
-	#Initialize text values.
-	gone_for.text = "You were gone for\n" + str(formatted_time_elapsed) + ","
-	made.text = "and made\n" + BigNumbers.array_to_display(offline_souls) + " souls."
-	
+	#Otherwise, just put them at their final positions.
+	else:
+		color_rect.modulate.a = 1
+		panel.position.y =300
 
 func _process(delta: float) -> void:
-	
-	#If animations are enabled:
+#If animations are enabled:
 	if Global.animations == true:
 		
 		#If not currently exiting:
@@ -35,7 +29,7 @@ func _process(delta: float) -> void:
 			#Fade the backdrop in, and slide the panel down.
 			if color_rect.modulate.a < 1:
 				color_rect.modulate.a += 4 * delta
-			panel.position.y = lerp(panel.position.y, 250.0, 8 * delta)
+			panel.position.y = lerp(panel.position.y, 300.0, 8 * delta)
 		
 		#If currently exiting:
 		else:
@@ -48,22 +42,26 @@ func _process(delta: float) -> void:
 			if color_rect.modulate.a < 0:
 				queue_free()
 
+
 func _on_exit_pressed() -> void:
-	
 	#If animations enabled, set exit to true, otherwise just delete the whole instance.
 	if Global.animations == true:
 		exit = true
 	else:
 		queue_free()
 
-func format_time(time_elapsed):
-	
-	var formatted_time_elapsed
-	
-	if time_elapsed >= 60:
-		formatted_time_elapsed = str(snapped(time_elapsed / 60, 1)) + " minutes"
+func _on_no_pressed() -> void:
+	#If animations enabled, set exit to true, otherwise just delete the whole instance.
+	if Global.animations == true:
+		exit = true
 	else:
-		formatted_time_elapsed = str(snapped(time_elapsed, 1)) + " seconds"
+		queue_free()
+
+func _on_yes_pressed() -> void:
 	
-	return formatted_time_elapsed
+	#Deletes the save file and reloads the main scene.
+	DirAccess.remove_absolute("user://savegame.data")
+	get_tree().reload_current_scene()
 	
+	Global.cod_info = {}
+	Global.upgrade_info = {}

@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cck3yon2moi5"]
+[gd_scene load_steps=11 format=3 uid="uid://cck3yon2moi5"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_5lb05"]
 [ext_resource type="Theme" uid="uid://buo32rgi3lfa" path="res://Resources/main_theme.tres" id="1_aya3i"]
 [ext_resource type="Texture2D" uid="uid://dkdw6osdn502m" path="res://Main/Backdrop.png" id="3_kdyhd"]
-[ext_resource type="Texture2D" uid="uid://dv5s3qaqgj02d" path="res://Main/scythe.png" id="3_rbxox"]
+[ext_resource type="Texture2D" uid="uid://dv5s3qaqgj02d" path="res://Main/Scythe/scythe.png" id="3_rbxox"]
+[ext_resource type="Texture2D" uid="uid://dnixi4kfbe1m5" path="res://Main/InfoPanel.png" id="4_veliw"]
 [ext_resource type="PackedScene" uid="uid://cn0vx2smc71j7" path="res://CODs/cods.tscn" id="4_wafcd"]
+[ext_resource type="Texture2D" uid="uid://d2kwp8x24etvv" path="res://Main/Scythe/scythe.svg" id="5_ap6d7"]
+[ext_resource type="Texture2D" uid="uid://iptkq1dn1hkf" path="res://Main/Info/info.svg" id="6_8ukgx"]
 [ext_resource type="Texture2D" uid="uid://biimmyujcdiqf" path="res://Settings/cog.svg" id="6_q85od"]
 [ext_resource type="AudioStream" uid="uid://c8fnq0ei0o1mn" path="res://Assets/Sounds/Music1.ogg" id="7_txitg"]
 
@@ -18,7 +21,7 @@ grow_vertical = 2
 theme = ExtResource("1_aya3i")
 script = ExtResource("1_5lb05")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +29,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_kdyhd")
+
+[node name="InfoPanel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -265.0
+offset_top = 11.0
+offset_right = 265.0
+offset_bottom = 191.0
+grow_horizontal = 2
+texture = ExtResource("4_veliw")
 
 [node name="ReapButton" type="Button" parent="."]
 layout_mode = 1
@@ -45,50 +60,86 @@ focus_mode = 0
 icon = ExtResource("3_rbxox")
 flat = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="SoulCounter" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-text = "Souls: 10
-"
-
-[node name="SoulsPerSecond" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Per Second: 10
-"
-
-[node name="AllTime" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "All Time: 100"
-
-[node name="CODs" parent="." instance=ExtResource("4_wafcd")]
-layout_mode = 1
-
 [node name="SettingsButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -119.0
-offset_right = -12.0
-offset_bottom = 118.0
+offset_left = -110.0
+offset_top = 250.0
+offset_right = -10.0
+offset_bottom = 350.0
 grow_horizontal = 0
 focus_mode = 0
 icon = ExtResource("6_q85od")
 flat = true
 expand_icon = true
+
+[node name="UpgradeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 500.0
+offset_right = -10.0
+offset_bottom = 600.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("5_ap6d7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="InfoButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 375.0
+offset_right = -10.0
+offset_bottom = 475.0
+grow_horizontal = 0
+focus_mode = 0
+icon = ExtResource("6_8ukgx")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 22.0
+offset_right = 168.0
+offset_bottom = 216.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SoulCounter" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Souls: 10
+"
+horizontal_alignment = 1
+
+[node name="SoulsPerSecond" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Per Second: 10
+"
+horizontal_alignment = 1
+
+[node name="CODs" parent="." instance=ExtResource("4_wafcd")]
+layout_mode = 1
 
 [node name="SaveTimer" type="Timer" parent="."]
 autostart = true
@@ -100,4 +151,6 @@ bus = &"Music"
 
 [connection signal="pressed" from="ReapButton" to="." method="_on_reap_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="InfoButton" to="." method="_on_info_button_pressed"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
